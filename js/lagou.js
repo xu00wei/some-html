@@ -20,10 +20,33 @@ $(document).ready(function(){
 		$(".nmunUL").css("display","none");
 	})
 	$(".cmNavSection").mouseenter(function(){
+		var limitTop = $(".cmNav").offset().top;
+		var limitBottom = limitTop + $(".cmNav").height();
+		var hopeJobTop = $(this).offset().top;
+		var hopeJobHight = $(this).height();
+		var navBoxHight = $(this).children(".navBox").height()+16;
+//		alert(parseInt(hopeJobTop+hopeJobHight)+"..."+limitBottom);
+		var setTop = 0;
+		if(hopeJobTop == limitTop){
+			setTop = 0;
+		}
+		else if(parseInt(hopeJobTop+hopeJobHight)==limitBottom){
+			setTop = hopeJobHight - navBoxHight;
+		}
+		else if( (hopeJobTop - (navBoxHight - hopeJobHight)/2) < limitTop ){
+			setTop =  - hopeJobHight / 2;
+		}
+		else if( (hopeJobTop + (navBoxHight - hopeJobHight)/2) > limitBottom ){
+			setTop = hopeJobHight - navBoxHight + hopeJobHight/2;
+		}
+		else {
+			setTop = (hopeJobHight - navBoxHight)/2;
+		}
+		$(this).children(".navBox").css("top",setTop+"px");
 		$(this).children(".hopeJob").addClass("current");
-		$(this).children(".navBox").css({"display":"block"});
-		var navSite = $(".navBox dd").offset().left;
-		$(".navBox dd a").each(function(){
+		$(this).children(".navBox").addClass("active");
+		var navSite = $(".navBox.active dd").offset().left;
+		$(".navBox.active dd a").each(function(){
 //			alert($(this).offset().left);
 			if ($(this).offset().left == navSite){
 				$(this).css("background-size","0");
@@ -33,7 +56,7 @@ $(document).ready(function(){
 	
 	$(".cmNavSection").mouseleave(function(){
 		$(this).children(".hopeJob").removeClass("current");
-		$(this).children(".navBox").css("display","none");
+		$(this).children(".navBox").removeClass("active");
 	})
 	
 	function goNext(){
@@ -128,4 +151,6 @@ $(document).ready(function(){
       		$(".backMain").css("background-position-x","0");
       	});
       })
+      
+      
 })

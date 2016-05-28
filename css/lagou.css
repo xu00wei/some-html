@@ -223,6 +223,9 @@ li{
 	overflow: hidden;
 	z-index: 101;
 }
+.navBox.active{
+	display: block;
+}
 .navBox dt{
 	float: left;
 	text-decoration: underline;
@@ -230,6 +233,9 @@ li{
 }
 .navBox dd{
 	margin-left: 70px;
+}
+.navBox dt a{
+	color: black;
 }
 .navBox dd a{
 	padding: 0 10px;
@@ -257,6 +263,7 @@ li{
 	width: 147px;
 	height: 37px;
 	color: white;
+	cursor: pointer;
 	font-size: 18px;
 	background-color: #00B38A;
 	border:2px solid #00B38A;
@@ -401,9 +408,12 @@ li{
 }
 .workName h2, .company h2{
 	margin: 0;
+	margin-top: -8px;
 	float: left;
+}
+.cmwlTop h2 a{
 	color: #00B38A;
-	font-size: 16px;
+	font-size: 18px;
 }
 .wlTopRight{
 	float: left;
